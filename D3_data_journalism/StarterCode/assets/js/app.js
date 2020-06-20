@@ -113,7 +113,15 @@ function makeResponsive() {
             .attr("class", "d3-tip")
             .offset([80, -60])
             .html(function(d) {
-                return (`${d.state}<br>${yLabel}: ${d[chosenYAxis]}<br>${xLabel}: ${d[chosenXAxis]}`);
+                if (chosenXAxis === "age") {
+                    return (`${d.state}<br>${yLabel}: ${d[chosenYAxis]}%<br>${xLabel}: ${d[chosenXAxis]} yrs`);
+                }
+                else if (chosenXAxis === "income") {
+                    return (`${d.state}<br>${yLabel}: ${d[chosenYAxis]}%<br>${xLabel}: $${d[chosenXAxis]}`);
+                }
+                else {
+                    return (`${d.state}<br>${yLabel}: ${d[chosenYAxis]}%<br>${xLabel}: ${d[chosenXAxis]}%`);
+                };
             });
 
         circlesGroup.call(toolTip);
@@ -168,13 +176,13 @@ function makeResponsive() {
             .attr("opacity", 0.7)
             .classed("stateCircle", true);
 
-        var stateLabels = chartGroup.selectAll("text")
+        var stateLabels = chartGroup.selectAll(".stateText")
             .data(censusData)
             .enter()
             .append("text")
             .attr("x", d => xLinearScale(d[chosenXAxis]))
             .attr("y", d => yLinearScale(d[chosenYAxis]))
-            .text(d=>`${d.abbr}`)
+            .text(d => d.abbr)
             .classed("stateText", true)
             .attr("dy", 6);        
 
@@ -207,24 +215,21 @@ function makeResponsive() {
             
         var smokesLabel = yLabelsGroup.append("text")
             .attr("x", -(height/2))
-            .attr("y", -80)
-            .attr("dy", "1em")
+            .attr("y", -65)
             .attr("value", "smokes")
             .classed("inactive aText", true)
             .text("Percent who Smoke (%)");
 
         var obesityLabel = yLabelsGroup.append("text")
             .attr("x", -(height/2))
-            .attr("y", -60)
-            .attr("dy", "1em")
+            .attr("y", -45)
             .attr("value", "obesity")
             .classed("inactive aText", true)
             .text("Percent Obese (%)");
 
         var povertyLabel = yLabelsGroup.append("text")
             .attr("x", -(height /2))
-            .attr("y", -40)
-            .attr("dy", "1em")
+            .attr("y", -25)
             .attr("value", "poverty")
             .classed("active aText", true)
             .text("Percent in Poverty (%)");
