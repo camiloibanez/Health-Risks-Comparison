@@ -34,7 +34,12 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
 
+var geojson;
+
 function plotMap(value) {
+    if (geojson) {
+        myMap.removeLayer(geojson);
+    };
     
     var units;
     var dollars = "";
@@ -49,10 +54,10 @@ function plotMap(value) {
         units = "%";
     };
 
-    L.choropleth(statesData, {
+    geojson = L.choropleth(statesData, {
         valueProperty: value,
         scale: ["#ADD8E6", "#0000A0"],
-        steps: 10,
+        steps: 5,
         mode: 'q',
         style: {
             color: "#0000A0",
