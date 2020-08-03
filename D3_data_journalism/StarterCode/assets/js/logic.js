@@ -21,8 +21,6 @@ $.get(url, function(data, status) {
     };
 });
 
-console.log(statesData);
-
 const API_KEY = "pk.eyJ1IjoiY2FtaWxvaSIsImEiOiJja2J5MmFuMWowZGZzMnNwanl3aHhrMXlkIn0.T5o02VrPvl-2Qq7hzbIqHg";
 
 var myMap = L.map("map").setView([37,-95], 4);
@@ -63,6 +61,12 @@ function plotMap(value) {
         },
         onEachFeature: function(feature, layer) {
             layer.bindPopup(`<h5>${dollars}${feature.properties[`${value}`]}${units}</h5>`);
+            layer.on("mouseover", function(e) {
+                layer.openPopup();
+            });
+            layer.on("mouseout", function(e) {
+                layer.closePopup();
+            });
         }
     }).addTo(myMap);
 };
