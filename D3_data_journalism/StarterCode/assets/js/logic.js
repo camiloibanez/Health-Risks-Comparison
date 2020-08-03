@@ -35,3 +35,38 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1,
     accessToken: API_KEY
 }).addTo(myMap);
+
+function plotMap(value) {
+    
+    var units;
+    var dollars = "";
+    if (value == "age") {
+        units = " years";
+    }
+    else if (value == "income") {
+        units = "";
+        dollars = "$";
+    }
+    else {
+        units = "%";
+    };
+
+    L.choropleth(statesData, {
+        valueProperty: value,
+        scale: ["#ADD8E6", "#0000A0"],
+        steps: 10,
+        mode: 'q',
+        style: {
+            color: "#0000A0",
+            weight: 1,
+            opacity: 1
+        },
+        onEachFeature: function(feature, layer) {
+            layer.bindPopup(`<h5>${dollars}${feature.properties[`${value}`]}${units}</h5>`);
+        }
+    }).addTo(myMap);
+};
+
+$("#btn").click(function() {
+    plotMap($("#health_factor").val());
+});
