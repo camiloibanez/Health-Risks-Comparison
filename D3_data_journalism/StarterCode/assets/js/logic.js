@@ -76,6 +76,6 @@ function plotMap(value) {
     }).addTo(myMap);
 };
 
-$("#btn").click(function() {
+$("#health_factor").change(function() {
     plotMap($("#health_factor").val());
 });
