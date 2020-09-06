@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Health Risks</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/d3Style.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+   crossorigin=""></script>
+
+   <script type="text/javascript" src="assets/js/choropleth.js"></script>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <h1>Health Factor Comparison</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12  col-md-9">
+        <div id="scatter">
+          <!-- We append our chart here. -->
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12  col-md-9">
+        <div class="article">
+          <h2>Correlations:</h2>
+          <ul>
+            <h3>Poverty Correlations</h3>
+            <li>There was a positive correlation between percent of people in each state in poverty and the percent of people who lacked healthcare of 0.52</li>
+            <li>There was a positive correlation between percent of people in each state in poverty and the percent who were obese of 0.46</li>
+            <li>There was a positive correlation between percent of people in each state in poverty and the percent who smoke of 0.52</li>
+
+            <h3>Age Correlations</h3>
+            <li>There was a positive correlation of median age and percent who smoke of 0.24. Having a smoking habit is more prevalent among older people. Perhaps people got addicted to tobacco products before the health effects of them were known and continued the habit since then.</li>
+            <li>There was a negative correlation of median age with percent who lack healthcare of -0.38. The older you get the more likely you are to have healthcare.</li>
+            
+            <h3>Income Correlations</h3>
+            <li>Median income had a strong negative correlation of -0.65 with the percent of people who are obese</li>
+            <li>Median income had a strong negative correlation of -0.66 with the percent of people who smoke</li>
+            <li>Median income had a strong negative correlation of -0.43 with the percent of people who lack healthcare</li>
+            <h3>Smoking and Obesity</h3>
+            <li>Lack of Healthcare had a positive correlation with the percent who are obese of 0.36. We don’t know if the lack of healthcare leads to more allowing attitudes towards obesity or that there is a third variable, such as income, that relates to both factors and makes it more difficult to afford a healthy diet and time to exercise as well as healthcare benefits.</li>
+            <li>The strongest correlation was a positive correlation between obesity and a smoking habit of 0.74. A smoking habit is also more prevalent among the obese and vice versa. It seems lax standards of personal health spread across aspects of one’s life.</li>
+          </ul>
+          <p>Overall, it is clear the way to improve someone’s standard of living is to help raise them into a higher income bracket. This will impact their health, their habits, and their coverage.</p>
+        </div>
+        <h4>Map</h4>
+        <p>Click here to see a geographic correlation of the health factors:</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12  col-md-9">
+        <select id="health_factor">
+          <option value="healthcare">% Lacks Healthcare</option>
+          <option value="income">Median Income</option>
+          <option value="age">Median Age</option>
+          <option value="smokes">% who Smokes</option>
+          <option value="obesity">% Obese</option>
+          <option value="poverty">% in Poverty</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12  col-md-9">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer-->
+  <div id="footer">
+    <p>The Coding Boot Camp&copy;2016</p>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+  <script type="text/javascript" src="assets/js/app.js"></script>
+  <script type="text/javascript" src="assets/js/geojson.js"></script>
+  <script type="text/javascript" src="assets/js/logic.js"></script>
+
+</body>
+
+</html>
