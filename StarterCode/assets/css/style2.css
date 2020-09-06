@@ -1,3 +1,7 @@
+body {
+    margin: 0px;
+}
+
 .background {
     background-image: url('../images/20-209531_united-states-clipart-shape-usa-map-3d-png.png');
     background-repeat: no-repeat;
@@ -5,3 +9,22 @@
     height: 870px;
     width: 100%;
 }
+
+.menu {
+    background-color: #90C1D6;
+    height: 44px;
+    width: 100%;
+  }
+  
+  .header {
+    position: relative;
+    margin-top: 0px;
+    padding-top: 4px;
+    padding-left: 325px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: white;
+    font-weight: bold;
+  }
+  
