@@ -1,5 +1,5 @@
 
-var url = "assets/data/data.csv"
+var url = "static/data/data.csv"
 
 var array;
 

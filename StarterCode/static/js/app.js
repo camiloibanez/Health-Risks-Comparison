@@ -142,7 +142,7 @@ function makeResponsive() {
     };
 
 
-    d3.csv("assets/data/data.csv").then(function(censusData) {
+    d3.csv("static/data/data.csv").then(function(censusData) {
         censusData.forEach(function(data) {
             data.poverty = +data.poverty;
             data.age = +data.age;
